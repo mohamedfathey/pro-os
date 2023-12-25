@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: os-project
+spec:
+  selector:
+    matchLabels:
+      name: my-project
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: my-project
+    spec:
+      containers:
+      - name: myapp
+        image: m7mdfathey/ima-app
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
